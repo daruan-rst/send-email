@@ -19,10 +19,9 @@ public class EmailDto {
     private String currentAccount;
     @NotBlank
     private String targetAccount;
-    @NotBlank
+
     private BigDecimal ammount;
     @NotBlank
     private String operation;
-
 
 }

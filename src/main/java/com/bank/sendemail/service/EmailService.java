@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class EmailService {
@@ -24,7 +25,8 @@ public class EmailService {
     public Email sendEmail(Email mail) {
         mail.setSentTime(LocalDateTime.now());
         mail.setText(emailText(mail));
-
+        mail.setSubject(mail.getOperation() + "-" +
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy @ HH:mm")));
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("bank.application979@gmail.com");
@@ -42,9 +44,12 @@ public class EmailService {
     }
 
     private String emailText(Email email){
-        String text = saudacao() +"!\nFoi realizad"+operationType(email) + "no montante de R$"+
-                email.getAmmount()+". Se a operação parecer suspeita ou se não identificar o procedimento, entre em contato";
-    return text;}
+        return saudacao() +"!\nFoi realizad"+operationType(email) + " no montante de R$"+
+                email.getAmmount()+". Se a operação parecer suspeita ou se não identificar o procedimento, entre em contato\n" +
+                "" +
+                "" +
+                "Atenciosamente," +
+                "Seu Banco"; }
 
     private String saudacao(){
         int hour = LocalDateTime.now().getHour();
@@ -68,16 +73,16 @@ public class EmailService {
                 operation = "o um saque da sua conta " + email.getCurrentAccount();
                 break;
             case "TRANSFER_PIX":
-                operation = "a uma transferência tipo PIX da sua conta" + email.getCurrentAccount()
-                        + "para a conta" + email.getTargetAccount();
+                operation = "a uma transferência tipo PIX da sua conta " + email.getCurrentAccount()
+                        + " para a conta " + email.getTargetAccount();
                 break;
             case "TRANSFER_TED":
-                operation = "a uma transferência tipo TED da sua conta" + email.getCurrentAccount()
-                        + "para a conta" + email.getTargetAccount();
+                operation = "a uma transferência tipo TED da sua conta " + email.getCurrentAccount()
+                        + " para a conta " + email.getTargetAccount();
                 break;
             case "TRANSFER_DOC":
-                operation = "a uma transferência tipo DOC da sua conta" + email.getCurrentAccount()
-                        + "para a conta" + email.getTargetAccount();
+                operation = "a uma transferência tipo DOC da sua conta " + email.getCurrentAccount()
+                        + " para a conta " + email.getTargetAccount();
                 break;
         }
 

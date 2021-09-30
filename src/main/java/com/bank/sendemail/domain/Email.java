@@ -23,7 +23,6 @@ public class Email {
 
     private String targetAccount;
 
-    private String subject;
 
     @Column(columnDefinition = "TEXT")
     private String text;
@@ -33,5 +32,10 @@ public class Email {
     private String operation;
 
     private LocalDateTime sentTime;
+
+    private String subject = operation+" "+sentTime;
+
+    @Enumerated(EnumType.STRING)
+    private DeliveredStatus status;
 
 }

@@ -46,9 +46,9 @@ public class EmailService {
     private String emailText(Email email){
         return saudacao() +"!\nFoi realizad"+operationType(email) + " no montante de R$"+
                 email.getAmmount()+". Se a operação parecer suspeita ou se não identificar o procedimento, entre em contato\n" +
-                "" +
-                "" +
-                "Atenciosamente," +
+                "\n" +
+                "\n" +
+                "Atenciosamente,\n" +
                 "Seu Banco"; }
 
     private String saudacao(){

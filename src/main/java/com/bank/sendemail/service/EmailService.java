@@ -84,6 +84,9 @@ public class EmailService {
                 operation = "a uma transferência tipo DOC da sua conta " + email.getCurrentAccount()
                         + " para a conta " + email.getTargetAccount();
                 break;
+            case "PREPAID_CELL_CREDIT":
+            operation = "a uma recarga de celular da sua conta " + email.getCurrentAccount();
+            break;
         }
 
         return operation;}

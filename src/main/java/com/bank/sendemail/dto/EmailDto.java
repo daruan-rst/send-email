@@ -16,6 +16,8 @@ public class EmailDto {
     @Email
     private String email;
     @NotBlank
+    private String userName;
+    @NotBlank
     private String currentAccount;
     @NotBlank
     private String targetAccount;

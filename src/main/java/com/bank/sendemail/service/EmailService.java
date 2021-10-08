@@ -44,7 +44,7 @@ public class EmailService {
     }
 
     private String emailText(Email email){
-        return saudacao() +"!\nFoi realizad"+operationType(email) + " no montante de R$"+
+        return saudacao() +"Sr(a)." +email.getUserName() +",\n\nFoi realizad"+operationType(email) + " no montante de R$"+
                 email.getAmmount()+". Se a operação parecer suspeita ou se não identificar o procedimento, entre em contato\n" +
                 "\n" +
                 "\n" +
@@ -60,7 +60,7 @@ public class EmailService {
             saudacao = "Boa tarde";
         }else{
             saudacao = "Boa noite";
-        }return saudacao;
+        }return saudacao +"!\n\n";
     }
 
     private String operationType(Email email){

@@ -23,6 +23,7 @@ public class Email {
 
     private String targetAccount;
 
+    private String userName;
 
     @Column(columnDefinition = "TEXT")
     private String text;
